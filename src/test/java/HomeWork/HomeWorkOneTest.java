@@ -48,7 +48,8 @@ public class HomeWorkOneTest {
         driver.findElement(By.id("firstName")).sendKeys("Mariya");
         driver.findElement(By.id("lastName")).sendKeys("Loseva");
         driver.findElement(By.id("userEmail")).sendKeys("manya-cat@rambler.ru");
-//не хватает клика на гендер
+        WebElement testingRadioButton = driver.findElement(By.cssSelector("#genterWrapper div[class='custom-control custom-radio custom-control-inline']:nth-child(2)"));
+        testingRadioButton.click();
 
         driver.findElement(By.id("userNumber")).sendKeys("9998889988");
         WebElement dataTest = driver.findElement(By.id("dateOfBirthInput"));

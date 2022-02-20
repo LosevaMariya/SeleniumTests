@@ -63,7 +63,7 @@ public class FormTestsDraft {
 
     @Test
     public void radioButtonTest() throws InterruptedException {
-        WebElement testingRadioButton = driver.findElement(By.cssSelector("input[name='gender'][value='Female']"));
+        WebElement testingRadioButton = driver.findElement(By.cssSelector("#genterWrapper div[class='custom-control custom-radio custom-control-inline']:nth-child(2)"));
         testingRadioButton.click();
 
 //        System.out.print("Gender: " + testingRadioButton);
@@ -79,7 +79,7 @@ public class FormTestsDraft {
     }
 
     @Test
-    public void dadeOfBirthTest() throws InterruptedException {
+    public void dateOfBirthTest() throws InterruptedException {
         WebElement dataTest = driver.findElement(By.id("dateOfBirthInput"));
         dataTest.click();
         WebElement yearDropdown = driver.findElement(By.className("react-datepicker__year-select"));
