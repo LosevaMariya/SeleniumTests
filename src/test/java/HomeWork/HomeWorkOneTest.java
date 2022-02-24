@@ -47,19 +47,19 @@ public class HomeWorkOneTest {
     @Test
     public void FormTest() throws InterruptedException {
         String username = "Mariya";
-        driver.findElement(By.id("firstName")).sendKeys("Mariya");
+        driver.findElement(By.id("firstName")).sendKeys(username);
 
         String lastName = "Loseva";
-        driver.findElement(By.id("lastName")).sendKeys("Loseva");
+        driver.findElement(By.id("lastName")).sendKeys(lastName);
 
         String userEmail = "manya-cat@rambler.ru";
-        driver.findElement(By.id("userEmail")).sendKeys("manya-cat@rambler.ru");
+        driver.findElement(By.id("userEmail")).sendKeys(userEmail);
 
         WebElement testingRadioButton = driver.findElement(By.cssSelector("#genterWrapper div[class='custom-control custom-radio custom-control-inline']:nth-child(2)"));
         testingRadioButton.click();
 
         String userNumber = "9998889988";
-        driver.findElement(By.id("userNumber")).sendKeys("9998889988");
+        driver.findElement(By.id("userNumber")).sendKeys(userNumber);
 
 
         WebElement dataTest = driver.findElement(By.id("dateOfBirthInput"));
@@ -74,16 +74,25 @@ public class HomeWorkOneTest {
 
         driver.findElement(By.id("submit")).sendKeys(Keys.ENTER);
 
-        String studentName = "Mariya Loseva";
-        Assertions.assertEquals("Mariya Loseva", studentName);
-        String studentEmail = "manya-cat@rambler.ru";
-        Assertions.assertEquals("manya-cat@rambler.ru", studentEmail);
-        String gender = "Female";
-        Assertions.assertEquals("Female", gender);
-        String mobile = "9998889988";
-        Assertions.assertEquals("9998889988", mobile);
-        String dataOfBirth = "19 July,1986";
-        Assertions.assertEquals("19 July,1986", dataOfBirth);
+        WebElement studentNam = driver.findElement(By.xpath("//*[contains(@class,'table')]//tr[1]//td[2]"));
+        String studentName = studentNam.getText();
+        Assertions.assertEquals(username + ' ' + lastName, studentName);
+
+        WebElement studentEmail = driver.findElement(By.xpath("//*[contains(@class,'table')]//tr[2]//td[2]"));
+        String studentMail = studentEmail.getText();
+        Assertions.assertEquals(userEmail, studentMail);
+
+        WebElement askGender = driver.findElement(By.xpath("//*[contains(@class,'table')]//tr[3]//td[2]"));
+        String gender = askGender.getText();
+        Assertions.assertTrue(gender.contains("Female"));
+
+        WebElement phone = driver.findElement(By.xpath("//*[contains(@class,'table')]//tr[4]//td[2]"));
+        String mobile = phone.getText();
+        Assertions.assertEquals(userNumber, mobile);
+
+        WebElement dataOfBirt = driver.findElement(By.xpath("//*[contains(@class,'table')]//tr[5]//td[2]"));
+        String dataOfBirth = dataOfBirt.getText();
+        Assertions.assertTrue(dataOfBirth.contains("19 July,1986"));
 
         Thread.sleep(2000);
     }
